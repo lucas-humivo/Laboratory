@@ -1,0 +1,64 @@
+﻿@page
+@model Laboratory.Pages.Clients.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Client</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Client.CompanyName" class="control-label"></label>
+                <input asp-for="Client.CompanyName" class="form-control" />
+                <span asp-validation-for="Client.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Address" class="control-label"></label>
+                <input asp-for="Client.Address" class="form-control" />
+                <span asp-validation-for="Client.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.ContactPerson" class="control-label"></label>
+                <input asp-for="Client.ContactPerson" class="form-control" />
+                <span asp-validation-for="Client.ContactPerson" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.PhoneNumber" class="control-label"></label>
+                <input asp-for="Client.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Client.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.NIP" class="control-label"></label>
+                <input asp-for="Client.NIP" class="form-control" />
+                <span asp-validation-for="Client.NIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Currency" class="control-label"></label>
+                <input asp-for="Client.Currency" class="form-control" />
+                <span asp-validation-for="Client.Currency" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.PaymentTerms" class="control-label"></label>
+                <input asp-for="Client.PaymentTerms" class="form-control" />
+                <span asp-validation-for="Client.PaymentTerms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
