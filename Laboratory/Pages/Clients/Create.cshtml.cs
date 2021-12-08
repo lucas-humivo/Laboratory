@@ -30,15 +30,19 @@ namespace Laboratory.Pages.Clients
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            var emptyClient = new Client();
+
+            if (await TryUpdateModelAsync<Client>(
+                emptyClient,
+                "student",   // Prefix for form value.
+                s => s.CompanyName, s => s.Address, s => s.ContactPerson, s => s.PhoneNumber, s => s.NIP, s => s.Currency, s => s.PaymentTerms))
             {
-                return Page();
+                _context.Client.Add(emptyClient);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
 
-            _context.Client.Add(Client);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            return Page();
         }
     }
 }

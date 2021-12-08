@@ -50,7 +50,16 @@ namespace Laboratory.Pages.Clients
                 return NotFound();
             }
 
-            if (await TryUpdateModelAsync<Client>(clientToUpdate, "klient", c => c.CompanyName, c => c.Address, c => c.ContactPerson, c => c.PhoneNumber, c => c.NIP, c => c.Currency, c => c.PaymentTerms))
+            if (await TryUpdateModelAsync<Client>(
+                clientToUpdate,
+                "clientToUpdate", 
+                c => c.CompanyName, 
+                c => c.Address, 
+                c => c.ContactPerson, 
+                c => c.PhoneNumber, 
+                c => c.NIP, 
+                c => c.Currency, 
+                c => c.PaymentTerms))
             {
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
