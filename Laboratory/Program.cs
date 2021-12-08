@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Laboratory.Data;
 using Laboratory.Models;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,12 @@ builder.Services.AddDbContext<LaboratoryContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LaboratoryContext")));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+var myMaxModelBindingCollectionSize = Convert.ToInt32(
+           builder.Configuration["MyMaxModelBindingCollectionSize"] ?? "100");
+
+builder.Services.Configure<MvcOptions>(options =>
+       options.MaxModelBindingCollectionSize = myMaxModelBindingCollectionSize);
 
 var app = builder.Build();
 

@@ -53,6 +53,26 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Client.PaymentTerms)
         </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Order)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Numer zamówienia</th>
+                </tr>
+                @foreach (var item in Model.Client.Order)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Number)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
     </dl>
 </div>
 <div>

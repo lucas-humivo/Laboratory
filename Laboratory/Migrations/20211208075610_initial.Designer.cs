@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Laboratory.Migrations
 {
     [DbContext(typeof(LaboratoryContext))]
-    [Migration("20211207190733_initial")]
+    [Migration("20211208075610_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

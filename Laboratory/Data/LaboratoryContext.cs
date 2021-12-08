@@ -20,5 +20,11 @@ namespace Laboratory.Data
 
         public DbSet<Order> Order { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Client>().ToTable("Client");
+            modelBuilder.Entity<Order>().ToTable("Order");
+        }
+
     }
 }

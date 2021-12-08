@@ -28,7 +28,10 @@ namespace Laboratory.Pages.Clients
                 return NotFound();
             }
 
-            Client = await _context.Client.FirstOrDefaultAsync(m => m.ClientID == id);
+            Client = await _context.Client
+                .Include(s => s.Order)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ClientID == id);
 
             if (Client == null)
             {
