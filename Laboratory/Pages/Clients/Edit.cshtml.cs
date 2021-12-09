@@ -41,28 +41,29 @@ namespace Laboratory.Pages.Clients
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            var clientToUpdate = await _context.Client.FindAsync(id);
-
-            if (clientToUpdate == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            if (await TryUpdateModelAsync<Client>(
-                clientToUpdate,
-                "clientToUpdate", 
-                c => c.CompanyName, 
-                c => c.Address, 
-                c => c.ContactPerson, 
-                c => c.PhoneNumber, 
-                c => c.NIP, 
-                c => c.Currency, 
-                c => c.PaymentTerms))
+            _context.Attach(Client).State = EntityState.Modified;
+
+            try
             {
                 await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ClientExists(Client.ClientID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return Page();
